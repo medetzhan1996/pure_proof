@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+<!-- Header Area -->
+  <div class="header-area" id="headerArea">
+    <div class="container">
+      <!-- Header Content -->
+      <div class="header-content position-relative d-flex align-items-center justify-content-between">
+        <!-- Back Button -->
+        <div class="back-button">
+          <a href="{% url 'myproject:index' %}">
+            <i class="bi bi-arrow-left-short"></i>
+          </a>
+        </div>
+
+        <!-- Page Title -->
+        <div class="page-heading">
+          <h6 class="mb-0">Blog List</h6>
+        </div>
+
+        <!-- Settings -->
+        <div class="setting-wrapper">
+          <div class="setting-trigger-btn" id="settingTriggerBtn">
+            <i class="bi bi-gear"></i>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content-wrapper py-3">
+    <div class="container">
+      <div class="row g-3 justify-content-center">
+
+        <!-- Single Blog Card -->
+        {% for blog in blogs %}
+        <div class="col-12 col-md-8 col-lg-7 col-xl-6">
+          <div class="card shadow-sm blog-list-card">
+            <div class="d-flex align-items-center">
+              <div class="card-blog-img position-relative" style="background-image: url('{{blog.photo.url}}')">
+                <span class="badge bg-warning text-dark position-absolute card-badge"></span>
+              </div>
+              <div class="card-blog-content">
+                <span class="badge bg-danger rounded-pill mb-2 d-inline-block">{{blog.created_at}}</span>
+                <a class="blog-title d-block mb-3 text-dark" href="{% url 'myproject:post_detail' blog.id %}">{{blog.content|truncatehtml:70}}</a>
+                <a class="btn btn-primary btn-sm" href="{% url 'myproject:post_detail' blog.id %}">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

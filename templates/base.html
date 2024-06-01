@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Affan - PWA Mobile HTML Template">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="theme-color" content="#0134d4">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- Title -->
+  <title>Pure poof</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/icons/icon-96x96.png' %}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/icons/icon-152x152.png' %}">
+  <link rel="apple-touch-icon" sizes="167x167" href="{% static 'img/icons/icon-167x167.png' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icons/icon-180x180.png' %}">
+
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="{% static 'manifest.json' %}">
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Internet Connection Status -->
+  <div class="internet-connection-status" id="internetStatus"></div>
+
+  <!-- Header Area -->
+  <div class="header-area" id="headerArea">
+    <div class="container">
+      <!-- Header Content -->
+      <div class="header-content header-style-five position-relative d-flex align-items-center justify-content-between">
+        <!-- Logo Wrapper -->
+        <div class="logo-wrapper">
+          <a href="/myproject/">
+            <img src="{% static 'img/core-img/logo.png' %}" alt="">
+          </a>
+        </div>
+
+        <!-- Navbar Toggler -->
+        <div class="navbar--toggler" id="affanNavbarToggler" data-bs-toggle="offcanvas" data-bs-target="#affanOffcanvas"
+          aria-controls="affanOffcanvas">
+          <span class="d-block"></span>
+          <span class="d-block"></span>
+          <span class="d-block"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- # Sidenav Left -->
+  <div class="offcanvas offcanvas-start" id="affanOffcanvas" data-bs-scroll="true" tabindex="-1"
+    aria-labelledby="affanOffcanvsLabel">
+
+    <button class="btn-close btn-close-white text-reset" type="button" data-bs-dismiss="offcanvas"
+      aria-label="Close"></button>
+
+    <div class="offcanvas-body p-0">
+      <div class="sidenav-wrapper">
+        <!-- Sidenav Profile -->
+        <div class="sidenav-profile bg-gradient">
+          <div class="sidenav-style1"></div>
+
+          <!-- User Thumbnail -->
+          <div class="user-profile">
+            <img src="img/bg-img/2.jpg" alt="">
+          </div>
+
+          <!-- User Info -->
+          <div class="user-info">
+            <h6 class="user-name mb-0">{{request.user.username}}</h6>
+            <span>Pure poof</span>
+          </div>
+        </div>
+
+        <!-- Sidenav Nav -->
+        <ul class="sidenav-nav ps-0">
+          <li>
+            <a href="{% url 'myproject:index' %}"><i class="bi bi-house-door"></i> Home</a>
+          </li>
+          <li>
+            <a href="{% url 'myproject:search_product' %}"><i class="bi bi-search"></i> search</a>
+          </li>
+          <li>
+            <a href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i> Logout</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content-wrapper">
+
+    {% block content %}
+
+    {% endblock %}
+
+  </div>
+
+  <!-- Footer Nav -->
+  <div class="footer-nav-area" id="footerNav">
+    <div class="container px-0">
+      <!-- Footer Content -->
+      <div class="footer-nav position-relative">
+        <ul class="h-100 d-flex align-items-center justify-content-between ps-0">
+          <li class="active">
+            <a href="{% url 'myproject:index' %}">
+              <i class="bi bi-house"></i>
+              <span>Home</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{% url 'myproject:blog_list' %}">
+              <i class="bi bi-collection"></i>
+              <span>Blog</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{% url 'myproject:check_product' %}">
+              <i class="bi bi-search"></i>
+              <span>Scan</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{% url 'myproject:chat' %}">
+              <i class="bi bi-chat-dots"></i>
+              <span>AI Chat</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{% url 'myproject:profile_view' %}">
+              <i class="bi bi-gear"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- All JavaScript Files -->
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/slideToggle.min.js' %}"></script>
+  <script src="{% static 'js/internet-status.js' %}"></script>
+  <script src="{% static 'js/tiny-slider.js' %}"></script>
+  <script src="{% static 'js/venobox.min.js' %}"></script>
+  <script src="{% static 'js/countdown.js' %}"></script>
+  <script src="{% static 'js/rangeslider.min.js' %}"></script>
+  <script src="{% static 'js/vanilla-dataTables.min.js' %}"></script>
+  <script src="{% static 'js/index.js' %}"></script>
+  <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/dark-rtl.js' %}"></script>
+  <script src="{% static 'js/active.js' %}"></script>
+  <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+
+</html>

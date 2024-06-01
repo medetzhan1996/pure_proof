@@ -1,0 +1,6 @@
+<h2>Список продуктов</h2>
+<ul>
+    {% for product in products %}
+        <li>{{ product.name }} - {{ product.description }}</li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Affan - PWA Mobile HTML Template">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="theme-color" content="#0134d4">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- Title -->
+  <title>Pure poof</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/icons/icon-96x96.png' %}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/icons/icon-152x152.png' %}">
+  <link rel="apple-touch-icon" sizes="167x167" href="{% static 'img/icons/icon-167x167.png' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icons/icon-180x180.png' %}">
+
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="{% static 'manifest.json' %}">
+</head>
+
+<body>
+
+  <!-- Header Area -->
+  <div class="header-area" id="headerArea">
+    <div class="container">
+      <!-- Header Content -->
+      <div class="header-content header-style-five position-relative d-flex align-items-center justify-content-between">
+        <!-- Logo Wrapper -->
+        <div class="logo-wrapper">
+          <a href="home.html">
+            <img src="{% static 'img/core-img/logo.png' %}" alt="">
+          </a>
+        </div>
+
+        <!-- Navbar Toggler -->
+        <div class="navbar--toggler" id="affanNavbarToggler" data-bs-toggle="offcanvas" data-bs-target="#affanOffcanvas"
+          aria-controls="affanOffcanvas">
+          <span class="d-block"></span>
+          <span class="d-block"></span>
+          <span class="d-block"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="login-wrapper d-flex align-items-center justify-content-center">
+    <div class="custom-container">
+      <div class="text-center px-4">
+        <img class="login-intro-img" src="{% static 'img/bg-img/36.png' %}" alt="">
+      </div>
+
+      <!-- Register Form -->
+      <div class="register-form mt-4">
+        <h6 class="mb-3 text-center">Register to continue to the Pure Poof</h6>
+
+        <form method="post" action="{% url 'myproject:register' %}">
+          {% csrf_token %}
+          <div class="form-group text-start mb-3">
+            <input class="form-control" type="email" placeholder="Email address" name="email">
+          </div>
+
+          <div class="form-group text-start mb-3">
+            <input class="form-control" type="text" placeholder="Username" name="username">
+          </div>
+
+          <div class="form-group text-start mb-3 position-relative">
+            <input class="form-control" id="psw-input" type="password" placeholder="New password" name="password1">
+
+          </div>
+          <div class="form-group text-start mb-3 position-relative">
+            <input class="form-control" id="pss-input" type="password" placeholder="New password" name="password2">
+
+          </div>
+          <button class="btn btn-primary w-100" type="submit">Sign Up</button>
+        </form>
+      </div>
+
+      <!-- Login Meta -->
+      <div class="login-meta-data text-center">
+        <p class="mt-3 mb-0">Already have an account? <a class="stretched-link" href="{% url 'login' %}">Login</a></p>
+      </div>
+    </div>
+  </div>
+  <!-- All JavaScript Files -->
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/slideToggle.min.js' %}"></script>
+  <script src="{% static 'js/internet-status.js' %}"></script>
+  <script src="{% static 'js/tiny-slider.js' %}"></script>
+  <script src="{% static 'js/venobox.min.js' %}"></script>
+  <script src="{% static 'js/countdown.js' %}"></script>
+  <script src="{% static 'js/rangeslider.min.js' %}"></script>
+  <script src="{% static 'js/vanilla-dataTables.min.js' %}"></script>
+  <script src="{% static 'js/index.js' %}"></script>
+  <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/dark-rtl.js' %}"></script>
+  <script src="{% static 'js/active.js' %}"></script>
+  <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+
+</html>

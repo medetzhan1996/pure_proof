@@ -1,0 +1,326 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Affan - PWA Mobile HTML Template">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="theme-color" content="#0134d4">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- Title -->
+  <title>Affan - PWA Mobile HTML Template</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/icons/icon-96x96.png' %}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/icons/icon-152x152.png' %}">
+  <link rel="apple-touch-icon" sizes="167x167" href="{% static 'img/icons/icon-167x167.png' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icons/icon-180x180.png' %}">
+
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="{% static 'manifest.json' %}">
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Internet Connection Status -->
+  <div class="internet-connection-status" id="internetStatus"></div>
+
+  <!-- Header Area -->
+  <div class="header-area" id="headerArea">
+    <div class="container">
+      <!-- Header Content -->
+      <div class="header-content header-style-five position-relative d-flex align-items-center justify-content-between">
+        <!-- Logo Wrapper -->
+        <div class="logo-wrapper">
+          <a href="home.html">
+            <img src="{% static 'img/core-img/logo.png' %}" alt="">
+          </a>
+        </div>
+
+        <!-- Navbar Toggler -->
+        <div class="navbar--toggler" id="affanNavbarToggler" data-bs-toggle="offcanvas" data-bs-target="#affanOffcanvas"
+          aria-controls="affanOffcanvas">
+          <span class="d-block"></span>
+          <span class="d-block"></span>
+          <span class="d-block"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- # Sidenav Left -->
+  <div class="offcanvas offcanvas-start" id="affanOffcanvas" data-bs-scroll="true" tabindex="-1"
+    aria-labelledby="affanOffcanvsLabel">
+
+    <button class="btn-close btn-close-white text-reset" type="button" data-bs-dismiss="offcanvas"
+      aria-label="Close"></button>
+
+    <div class="offcanvas-body p-0">
+      <div class="sidenav-wrapper">
+        <!-- Sidenav Profile -->
+        <div class="sidenav-profile bg-gradient">
+          <div class="sidenav-style1"></div>
+
+          <!-- User Thumbnail -->
+          <div class="user-profile">
+            <img src="img/bg-img/2.jpg" alt="">
+          </div>
+
+          <!-- User Info -->
+          <div class="user-info">
+            <h6 class="user-name mb-0">Affan Islam</h6>
+            <span>CEO, Designing World</span>
+          </div>
+        </div>
+
+        <!-- Sidenav Nav -->
+        <ul class="sidenav-nav ps-0">
+          <li>
+            <a href="home.html"><i class="bi bi-house-door"></i> Home</a>
+          </li>
+          <li>
+            <a href="login.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content-wrapper">
+  <!-- Internet Connection Status -->
+  <div class="internet-connection-status" id="internetStatus"></div>
+
+  <!-- Header Area -->
+  <div class="header-area" id="headerArea">
+    <div class="container">
+      <!-- Header Content -->
+      <div class="header-content position-relative d-flex align-items-center justify-content-between">
+        <!-- Chat User Info -->
+        <div class="chat-user--info d-flex align-items-center">
+
+          <!-- Back Button -->
+          <div class="back-button">
+            <a href="{% url 'myproject:index' %}">
+              <i class="bi bi-arrow-left-short"></i>
+            </a>
+          </div>
+
+          <!-- User Thumbnail & Name -->
+          <div class="user-thumbnail-name">
+            <img src="{% static 'img/demo-img/2.png' %}" alt="">
+            <div class="info ms-1">
+              <p>AI manager</p>
+              <span class="active-status">Active Now</span>
+              <!-- span.offline-status.text-muted Last actived 27m ago -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Call & Video Wrapper -->
+        <div class="call-video-wrapper d-flex align-items-center">
+          <!-- Info Icon -->
+          <div class="info-icon">
+            <a class="text-secondary">
+              <i class="bi bi-info-circle"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="page-content-wrapper py-3" id="chat-wrapper">
+    <div class="container">
+      <div class="chat-content-wrap" >
+
+        <div class="single-chat-item">
+
+          <!-- User Avatar -->
+          <div class="user-avatar mt-1">
+            <!-- If the user avatar isn't available, will visible the first letter of the username.-->
+            <span class="name-first-letter">Ai</span>
+            <img src="{% static 'img/demo-img/2.png' %}" alt="">
+          </div>
+
+          <!-- User Message -->
+          <div class="user-message">
+            <div class="message-content">
+              <div class="single-message">
+                <p>Hello, How can I help you?</p>
+              </div>
+            </div>
+            <!-- Time and Status -->
+            <div class="message-time-status">
+              <div class="sent-time">00:00</div>
+            </div>
+          </div>
+        </div>
+        <!-- Single Chat Item -->
+        {% for chat in chats %}
+        <div class="{% if chat.is_gpt %}single-chat-item{% else %}single-chat-item outgoing{% endif %}">
+
+          <!-- User Avatar -->
+          <div class="user-avatar mt-1">
+            <!-- If the user avatar isn't available, will visible the first letter of the username.-->
+            <span class="name-first-letter">{% if chat.is_gpt %} Ai {% else %} {{ chat.user.username|first }} {% endif %}</span>
+            <img src="{% if chat.is_gpt %}{% static 'img/demo-img/2.png' %}{% else %}{% static 'img/bg-img/user3.png' %}{% endif %}" alt="">
+          </div>
+          <div class="user-message">
+            <div class="message-content">
+              <div class="single-message">
+                <p>{{ chat.text|safe }}</p>
+              </div>
+            </div>
+            <div class="message-time-status">
+              <div class="sent-time">{{ chat.timestamp|date:"h:i A" }}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-footer">
+    <div class="container h-100">
+      <div class="chat-footer-content h-100 d-flex align-items-center">
+        <form action="chat.html#">
+          <!-- Message -->
+          <input class="form-control" id="user-input" type="text" placeholder="Type here...">
+          <!-- Send -->
+          <button class="btn btn-submit" type="submit">
+            <i class="bi bi-cursor"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('user-input');
+    const messages = document.querySelector('.chat-content-wrap');
+    const form = document.querySelector('.chat-footer form');
+
+    // Prevent the form from submitting traditionally, and instead do it via AJAX
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        sendMessage();
+    });
+
+    function sendMessage() {
+        const userMessage = input.value.trim();
+
+        if (!userMessage) {
+            return; // Prevent sending empty messages
+        }
+
+        // Append user's message to the chat interface
+        messages.innerHTML += `
+            <div class="single-chat-item outgoing">
+                <div class="user-avatar mt-1">
+                    <span class="name-first-letter">U</span>
+                </div>
+                <div class="user-message">
+                    <div class="message-content">
+                        <div class="single-message">
+                            <p>${userMessage}</p>
+                        </div>
+                    </div>
+                    <div class="message-time-status">
+                        <div class="sent-time">${new Date().toLocaleTimeString()}</div>
+                    </div>
+                </div>
+            </div>`;
+
+        fetch('/myproject/chat/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': getCookie('csrftoken'), // Ensure CSRF token is included if needed
+            },
+            body: `message=${encodeURIComponent(userMessage)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Append AI's response to the chat interface
+            messages.innerHTML += `
+                <div class="single-chat-item">
+                    <div class="user-avatar mt-1">
+                        <span class="name-first-letter">A</span>
+                        <img src="{% static 'img/demo-img/2.png' %}" alt="">
+                    </div>
+                    <div class="user-message">
+                        <div class="message-content">
+                            <div class="single-message">
+                                <p>${data.ai_message}</p>
+                            </div>
+                        </div>
+                        <div class="message-time-status">
+                            <div class="sent-time">${new Date().toLocaleTimeString()}</div>
+                        </div>
+                    </div>
+                </div>`;
+        })
+        .catch(error => console.error('Error:', error));
+
+        // Clear the input field after sending
+        input.value = '';
+    }
+
+    // Function to get cookie by name; used for CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});
+</script>
+
+  <!-- All JavaScript Files -->
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/slideToggle.min.js' %}"></script>
+  <script src="{% static 'js/internet-status.js' %}"></script>
+  <script src="{% static 'js/tiny-slider.js' %}"></script>
+  <script src="{% static 'js/venobox.min.js' %}"></script>
+  <script src="{% static 'js/countdown.js' %}"></script>
+  <script src="{% static 'js/rangeslider.min.js' %}"></script>
+  <script src="{% static 'js/vanilla-dataTables.min.js' %}"></script>
+  <script src="{% static 'js/index.js' %}"></script>
+  <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/dark-rtl.js' %}"></script>
+  <script src="{% static 'js/active.js' %}"></script>
+  <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+
+</html>

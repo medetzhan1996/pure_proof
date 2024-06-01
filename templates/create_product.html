@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#reader {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+#result {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #dcf8c6;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+</style>
+
+<title>Document</title>
+</head>
+<body data-rsssl=1>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+main {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+#reader {
+width: 600px;
+}
+#result {
+text-align: center;
+font-size: 1.5rem;
+}
+</style>
+<main>
+<div id="reader"></div>
+<div id="result"></div>
+
+<form method="post" action="{% url 'myproject:create_product' %}">
+    {% csrf_token %}
+    {{ form.as_p }} 
+    <button type="submit">Save Product</button>
+</form>
+</main>
+<script>
+const scanner = new Html5QrcodeScanner('reader', {
+qrbox: {
+width: 250,
+height: 250,
+},
+fps: 20,
+});
+scanner.render(success, error);
+function success(result) {
+document.getElementById('id_barcode').value = result;
+scanner.clear();
+document.getElementById('reader').remove();
+}
+function error(err) {
+console.error(err);
+}
+</script>
+  
+</body>
+</html>
+
+

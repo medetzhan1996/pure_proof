@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+<!-- Header Area -->
+  <div class="header-area" id="headerArea">
+    <div class="container">
+      <!-- Header Content -->
+      <div class="header-content position-relative d-flex align-items-center justify-content-between">
+        <!-- Back Button -->
+        <div class="back-button">
+          <a href="{% url 'myproject:blog_list' %}">
+            <i class="bi bi-arrow-left-short"></i>
+          </a>
+        </div>
+
+        <!-- Page Title -->
+        <div class="page-heading">
+          <h6 class="mb-0">Profile</h6>
+        </div>
+
+        <!-- Settings -->
+        <div class="setting-wrapper">
+          <div class="setting-trigger-btn" id="settingTriggerBtn">
+            <i class="bi bi-gear"></i>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content-wrapper py-3">
+    <div class="container">
+      <!-- User Meta Data-->
+      <div class="card user-data-card">
+        <div class="card-body">
+          <form method="post">
+              {% csrf_token %}
+            <div class="form-group mb-3">
+              <label class="form-label" for="Username">Username</label>
+              <input class="form-control" id="Username"  type="text" name="username" value="{{form.username.value}}" placeholder="Username">
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="form-label" for="fullname">Name</label>
+              <input class="form-control" id="fullname" name="first_name" type="text" value="{{form.first_name.value}}" placeholder="Full Name">
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="form-label" for="email">Surname</label>
+              <input class="form-control" id="email" name="last_name" type="text" value="{{form.last_name.value}}" placeholder="Full Name">
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="form-label" for="job">Email</label>
+              <input class="form-control" id="job" name="email" type="email" value="{{form.email.value}}" placeholder="email">
+            </div>
+            <button class="btn btn-success w-100" type="submit">Update Now</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

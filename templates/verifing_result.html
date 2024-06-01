@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+<!-- Header Area -->
+  <div class="header-area" id="headerArea">
+    <div class="container">
+      <!-- Header Content -->
+      <div class="header-content position-relative d-flex align-items-center justify-content-between">
+        <!-- Back Button -->
+        <div class="back-button">
+          <a href="{% url 'myproject:index' %}">
+            <i class="bi bi-arrow-left-short"></i>
+          </a>
+        </div>
+
+        <!-- Page Title -->
+        <div class="page-heading">
+          <h6 class="mb-0">Blog List</h6>
+        </div>
+
+        <!-- Settings -->
+        <div class="setting-wrapper">
+          <div class="setting-trigger-btn" id="settingTriggerBtn">
+            <i class="bi bi-gear"></i>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="order-success-wrapper">
+    <div class="custom-container">
+      <div class="order-done-content">
+        <i class="bi {% if response.success %} bi-check-circle-fill text-success  {% else %} bi-x-circle-fill text-danger {% endif %}mb-2 display-1"></i>
+        <h5>{{response.message}}</h5>
+        <p>Your product is <strong class="badge bg-light text-dark shadow-sm me-2 fz-14">{{response.product_name}}. </strong>
+          {{response.verified}}
+        </p>
+        <a class="btn btn-warning mt-3" href="{% url 'myproject:check_product' %}">Go Back</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

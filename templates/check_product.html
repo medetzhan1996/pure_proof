@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+
+
+
+#reader, #screenshot-container img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#screenshot-container {
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+#result {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #dcf8c6;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+</style>
+
+
+<div id="reader"></div>
+<div id="result"></div>
+<div id="screenshot-container"></div>
+
+<form method="get" action="{% url 'myproject:check_product' %}">
+    <!-- Предполагается, что у вас уже есть настроенный backend для обработки этой формы -->
+    <input type="text" name="barcode" id="id_barcode" placeholder="Scanned QR Code">
+    <button type="submit">Check Product</button>
+</form>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js"></script>
+<script>
+const scanner = new Html5QrcodeScanner('reader', {
+  qrbox: { width: 250, height: 250 },
+  fps: 20,
+});
+
+scanner.render((result) => {
+  // Успешное сканирование
+  document.getElementById('id_barcode').value = result;
+  scanner.pause(); // Приостановите сканирование
+  captureScreenshot(); // Вызов функции захвата скриншота
+}, (err) => {
+  console.error(err);
+});
+
+// Функция для захвата скриншота
+function captureScreenshot() {
+  const video = document.querySelector('video');
+  const canvas = document.createElement('canvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  const context = canvas.getContext('2d');
+  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  // Показываем скриншот в контейнере
+  const img = document.createElement('img');
+  img.src = canvas.toDataURL('image/png');
+  document.getElementById('screenshot-container').appendChild(img);
+
+  // Дополнительно, вы можете здесь же очистить сканер, если это необходимо
+  // scanner.clear();
+}
+</script>
+{% endblock %}
